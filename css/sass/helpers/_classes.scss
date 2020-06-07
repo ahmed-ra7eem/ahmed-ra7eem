@@ -1,0 +1,24 @@
+// classes
+// buttons animations
+%btn-anim {
+    position: relative;
+    transition: all .5s ease-in-out;
+    overflow: hidden;
+    &::before {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: -100px;
+        width: 80px;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(var(--main-color-rgba), .8), transparent);
+        transform: skew(35deg);
+        transition: 0s;
+    }
+    &:hover {
+        &::before {
+            left: calc(100% + 100px);
+            transition: .5s;
+        }
+    }
+}

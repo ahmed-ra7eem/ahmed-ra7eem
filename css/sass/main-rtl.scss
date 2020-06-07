@@ -1,0 +1,114 @@
+/***** 4.6 - Start Resume *****/
+@import "helpers/variables";
+@import "helpers/mixins";
+.navigation-menu {
+  li {
+    [dir=rtl] & {
+      &::before {
+        content: attr(data-content);
+      }
+    }
+  }
+}
+body {
+  font-family: var(--second-font);
+}
+#theme {
+    @include position(fixed, 150px, -105px, auto, auto);
+    background-color: var(--main-color);
+    z-index: 200;
+    width: 105px;
+    padding: 5px 5px 10px;
+    border-radius: 5px;
+    transition: all .5s ease-in-out;
+    &.open {
+      @include position(fixed, 150px, 0, auto, auto);
+    }
+    .theme__pull {
+      @include position(absolute, 50%, auto, auto, -45px);
+      transform: translate(-50%, -50%);
+      background-color: var(--main-color);
+      width: 30px;
+      height: 30px;
+      font-size: 20px;
+      font-weight: bold;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      .pull-icon {
+        color: var(--bg-color);
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all .5s ease-in-out;
+        &::before {
+          content: "\f105";
+        }
+        &.open {
+          transform: rotate(180deg);
+        }
+      }
+    }
+}
+
+
+
+.resume {
+  .row {
+    [dir=rtl] & {
+      &::before {
+        @media #{$maxMobile} {
+          left: auto;
+          right: 20px;
+        }
+      }
+    }
+    .column {
+      .resume__section {
+        @media #{$minMedium} {
+          &.skills {
+            [dir=rtl] &{
+              direction: ltr;
+            }
+            h4 {
+                i {
+                    left: -32px !important;
+                }
+            }
+          }
+        }
+        @media #{$maxMobile} {
+          &.skills {
+            i {
+              left: auto;
+              right: 0;
+            }
+          }
+        }
+      }
+      &.offset-md-6 {
+        [dir=rtl] & {
+          margin-left: auto !important;
+          margin-right: 50% ;
+          @media #{$maxMobile} {
+              left: auto;
+              margin-right: 0 !important;
+          }
+        }
+      }
+    }
+  }
+}
+.contact {
+  form {
+    i {
+      left: auto;
+      right: 20px
+    }
+  }
+}

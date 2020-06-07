@@ -1,0 +1,288 @@
+/*--------------------------------[Main Style CSS File]--------------------------------------
+
+    Project     : Grinta One Page Portfolio 
+    Version     : 1.0
+    Author      : Ahmed Raheem
+    Primary Use : Portfolio
+
+-------------------------------------------------------------------------------------------*/
+
+/*--------------------------------[CSS File Content]----------------------------------------
+    
+    + 1 - root VAriables
+    + 2 - Main And Bsic Style
+          2.1 - Scroll Bar
+          2.2 - Body
+          2.3 - Heading
+          2.4 - paragraph
+    + 3 - Start Classes
+          3.1 - Buttons
+          3.2 - Menu Button
+          3.3 - Theme Palette
+          3.4 - Scroll To Top
+    + 4 - Start Sections
+          4.1 - Start Loader
+          4.2 - Start Navigation Menu
+          4.3 - Start Header
+          4.4 - Start Home
+          4.5 - Start About
+          4.6 - Start Resume
+          4.7 - Start Services
+          4.8 - Start Portfolio
+          4.9 - Start Testimonials
+          4.10 - Start Contact
+          4.11 - Start Footer
+-------------------------------------------------------------------------------------------*/
+
+
+
+/********************************************************
+**[ 1 - Start Variables ]********************************
+********************************************************/
+:root {
+  /* [ Main Font Varible ] *******/
+  --main-font: 'Poppins', sans-serif;
+  --second-font: 'Poppins', sans-serif;
+
+  /* [ Start Colors Variables ] ********/
+  /* [ Start Colors ]*/
+  --main-color: #edf2f4;
+  --second-color: #00c792;
+  --bg-color: #2c384d;
+  --black-color: #000000;
+  --grey-color: #686c72;
+  /* [ Start Rgb Colors ] */
+  --main-color-rgba: 255, 255, 255;
+  --second-color-rgba: 0, 199, 146;
+  --bg-color-rgba: 44, 56, 77;
+  --black-color-rgba: 0, 0, 0;
+  --grey-color-rgba: 179, 179, 179;
+}
+
+
+/********************************************************
+**[ 2 - Start Main And Basic Style ]*********************
+********************************************************/
+/***** 2.1 - Start Scrollbar Style *****/
+::-webkit-scrollbar {
+  width: 12px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(var(--black-color-rgba), .3);
+  border-radius: 10px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: var(--second-color);
+  box-shadow: inset 0 0 6px rgba(var(--black-color-rgba), 0.5);
+  &:window-inactive {
+    background: var(--second-color);
+  }
+}
+
+/***** 2.2 - Start Body *****/
+body {
+  background-color: var(--bg-color);
+  background-image: url("../imgs/bg.png");
+  color: var(--main-color);
+  font-family: var(--main-font);
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  text-align: start;
+}
+/***** 2.3 - Start Heading *****/
+h2 {
+  span {
+    position: relative;
+    font-weight: bold;
+    margin-bottom: 35px;
+    display: inline-block;
+    &::before {
+      position: absolute;
+      content: "|";
+      @include vertical-center;
+      top: 58px;
+      z-index: 1;
+      color: var(--second-color);
+      font-size: 1rem;
+      font-weight: bold;
+    }
+  }
+}
+/***** 2.4 - Start Paragraph *****/
+h2 ~ p {
+  margin: 0 auto 50px;
+  width: 80%;
+  @media #{var(--max-sm)} {
+    width: 100%;
+  }
+}
+p {
+  color: var(--grey-color);
+}
+
+/********************************************************
+**[ 3 - Start Classes ]**********************************
+********************************************************/
+/***** 3.1 - Start Buttons *****/
+a.btn {
+  padding: 8px 30px;
+  background-color: var(--second-color);
+  @extend %btn-anim;
+  text-transform: uppercase;
+}
+/***** 3.2 - Start Menu Button *****/
+.menu-btn {
+  width: 40px;
+  height: 40px;
+  @include flex-pos(center, center, auto);
+  cursor: pointer;
+  .menu-btn__burger {
+    width: 30px;
+    height: 2px;
+    border-radius: 5px;
+    background-color: var(--second-color);
+    position: relative;
+    transition: all 0.5s ease-in-out;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 2px;
+      background-color: var(--second-color);
+      border-radius: 5px;
+      transition: all 0.5s ease-in-out;
+    }
+    &::before {
+      transform: translateY(-8px);
+    }
+    &::after {
+      transform: translateY(8px);
+    }
+  }
+}
+/* menu btn animation*/
+.menu-btn.open .menu-btn__burger {
+  transform: translateX(-30px);
+  background: transparent;
+}
+.menu-btn.open .menu-btn__burger::before {
+  transform: rotate(45deg) translate(15px, -15px);
+}
+.menu-btn.open .menu-btn__burger::after {
+  transform: rotate(-45deg) translate(15px, 15px);
+}
+
+/***** 3.3 - Start Theme Pallete *****/
+#theme {
+  @include position(fixed, 150px, -105px, auto, auto);
+  background-color: var(--main-color);
+  z-index: 200;
+  width: 105px;
+  padding: 5px 5px 10px;
+  border-radius: 5px;
+  transition: all .5s ease-in-out;
+  &.open {
+    @include position(fixed, 150px, 0, auto, auto);
+  }
+  .theme__pull {
+    @include position(absolute, 50%, auto, auto, -15px);
+    transform: translate(-50%, -50%);
+    background-color: var(--main-color);
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    .pull-icon {
+      color: var(--bg-color);
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all .5s ease-in-out;
+      &.open {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  .theme__pallete {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 0;
+    transition: all .5s ease-in-out;
+    li {
+      width: 20px;
+      height: 20px;
+      margin: 5px;
+      cursor: pointer;
+      &:first-child {
+        background-color: #00c792;
+      }
+      &:nth-child(2) {
+        background-color: #2098d1;
+      }
+      &:nth-child(3) {
+        background-color: #ffae00;
+      }
+      &:nth-child(4) {
+        background-color: #ef476f;
+      }
+      &:nth-child(5) {
+        background-color: #708a81;
+      }
+      &:last-child {
+        background-color: #c2956e;
+      }
+    }
+  }
+  .theme__color {
+    background-color: var(--bg-color);
+    margin: 0 5px;
+    padding: 10px 0;
+    i.fa {
+      display: block;
+      font-weight: bold;
+      font-size: 20px;
+    }
+    i.light {
+      display: none;
+    }
+    &.light {
+      i.light {
+        display: block;
+        color: #ffae00;
+      }
+      i.dark {
+        display: none;
+      }
+    }
+  }
+}
+
+/***** 3.4 - Start Scroll To Top *****/
+.scroll-top {
+  content: "";
+  @include position(fixed, auto, 30px, 50px, auto);
+  padding: 15px;
+  background-color: var(--second-color);
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 99;
+  transition: opacity .5s;
+  display: none;
+  box-shadow: 3px 3px 5px rgba(var(--black-color-rgba), 0.5);
+}

@@ -1,0 +1,61 @@
+
+// Opacity
+@mixin opacity($opacity) {
+    opacity: $opacity;
+    $opacity-ie: $opacity * 100;
+    -webkit-filter: alpha(opacity = $opacity-ie);
+    filter: alpha(opacity = $opacity-ie);
+}
+
+// prefixer
+@mixin prefixer($property, $value) {
+    -webkit-#{$property}: #{$value};
+    -moz-#{$property}: #{$value};
+    -ms-#{$property}: #{$value};
+    -o-#{$property}: #{$value};
+    #{$property}: #{$value};
+}
+
+// vertical center
+@mixin vertical-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include prefixer(transform, translate(-50%, -50%));
+}
+
+// flex center
+@mixin flex-pos($value-one, $value-two, $direction) {
+    display: flex;
+    justify-content: $value-one;
+    align-items: $value-two;
+    flex-direction: $direction;
+}
+
+// abs-position
+@mixin position($property, $top, $right, $bottom, $left) {
+    position: #{$property};
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+    [dir=rtl] & {
+        right: $left;
+        left: $right;
+    }
+}
+
+@mixin rtl($property, $ltr-value, $rtl-value) {
+    #{$property}: $ltr-value;
+  
+    [dir=rtl] & {
+      #{$property}: $rtl-value;
+    }
+}
+
+
+
+
+
+
+
