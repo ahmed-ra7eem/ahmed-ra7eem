@@ -828,6 +828,7 @@ header {
     background-color: var(--bg-color);
     border-color: rgba(var(--second-color-rgba), 0.5);
     border-bottom: none;
+    min-height: 286px;
     max-height: 406px;
     padding: 50px 20px;
     position: relative;
