@@ -687,6 +687,8 @@ header {
     @media (max-width: 768px) {
       .about p {
         margin: 0 auto 30px; } }
+  .about a {
+    color: var(--main-color); }
   .about .about__img {
     position: relative;
     max-width: 250px; }
